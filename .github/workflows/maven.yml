@@ -36,3 +36,8 @@ jobs:
       with:
         token: ${{ secrets.SimpleJavaService_Token  }}
 
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: SimpleJaveService-JAR
+        path: target/*.jar
