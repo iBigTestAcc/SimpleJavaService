@@ -20,4 +20,13 @@ public class SimpleController {
     public HelloResponse sayHello() {
         return new HelloResponse(simpleService.getMessage());
     }
+
+    @PostMapping("/fizzbuzz")
+    public ResponseEntity<String> fizzBuzz(@RequestBody RequestInt request) {
+        String result = simpleService.processNumber(request.getInput());
+        if (result == null || result.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(result);
+    }
 }
