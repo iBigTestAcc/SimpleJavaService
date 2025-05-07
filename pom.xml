@@ -23,42 +23,59 @@
 	</parent>
 
 	<dependencies>
+		<!-- Core Web dependency (REST API) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
+
+		<!-- Logging backend (required to avoid SLF4J error) -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
-			<version>${spring.boot.version}</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
+
+		<!-- Swagger/OpenAPI UI -->
+	  	<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		    <version>2.2.0</version>
+	  	</dependency>
+
+	  	<!-- Testing not use at this moment -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>${spring.boot.version}</version>
 			<scope>test</scope>
 		</dependency>
-	  	<dependency>
-		    <groupId>org.springdoc</groupId>
-		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-		    <version>2.2.0</version>
-	  	</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
+			<!-- Compiler plugin to set Java version -->
+		    <plugin>
 		      <groupId>org.apache.maven.plugins</groupId>
 		      <artifactId>maven-compiler-plugin</artifactId>
 		      <version>3.11.0</version>
 		      <configuration>
-		        <release>17</release>
+		        <release>17</release> <!-- Java 17 -->
 		      </configuration>
 		    </plugin>
+
+		    <!-- Spring Boot plugin to build executable fat JAR -->
 		    <plugin>
 		      <groupId>org.springframework.boot</groupId>
 		      <artifactId>spring-boot-maven-plugin</artifactId>
+		      <version>3.2.5</version>
+		      <executions>
+		        <execution>
+		          <goals>
+		            <goal>repackage</goal>
+		          </goals>
+		        </execution>
+		      </executions>
 		    </plugin>
 		</plugins>
 	</build>
