@@ -1,6 +1,11 @@
 package com.SimpleJavaService.controller;
 
 import com.SimpleJavaService.dto.HelloResponse;
+import com.SimpleJavaService.dto.RequestInt;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.SimpleJavaService.service.SimpleService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
