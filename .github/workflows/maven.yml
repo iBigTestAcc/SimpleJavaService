@@ -25,10 +25,16 @@ jobs:
       #     mvn -B clean package --file pom.xml
       #     cp target/simplejaveservice-0.0.1-SNAPSHOT.jar target/app.jar
 
-      - name: Build without tests
-        run: |
-          mvn clean package -DskipTests
-          cp target/*.jar target/app.jar
+#      - name: Build without tests
+#        run: |
+#          mvn clean package -DskipTests
+#          cp target/*.jar target/app.jar
+
+      - name: Build executable JAR
+        run: mvn clean package spring-boot:repackage -DskipTests
+
+      - name: Rename output
+        run: cp target/simplejaveservice-0.0.1-SNAPSHOT.jar target/app.jar
 
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
