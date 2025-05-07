@@ -1,5 +1,6 @@
 package com.SimpleJavaService.controller;
 
+import com.SimpleJavaService.dto.HelloResponse;
 import com.SimpleJavaService.service.SimpleService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class SimpleController {
     }
 
     @GetMapping("/hello")
-    public String sayHello() {
-        return simpleService.getMessage();
+    public HelloResponse sayHello() {
+        return new HelloResponse(simpleService.getMessage());
     }
 }
