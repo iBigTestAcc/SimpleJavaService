@@ -27,8 +27,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        mvn -B clean package --file pom.xml
+        cp target/simplejaveservice-0.0.1-SNAPSHOT.jar target/app.jar
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
@@ -36,8 +39,8 @@ jobs:
       with:
         token: ${{ secrets.SimpleJavaService_Token  }}
 
-    - name: Upload JAR artifact
+    - name: Upload app.jar
       uses: actions/upload-artifact@v4
       with:
-        name: SimpleJaveService-JAR
-        path: target/*.jar
+        name: app-jar
+        path: target/app.jar
